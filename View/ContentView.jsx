@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image
+  Image,
 } from 'react-native';
 import React, {useState} from 'react';
 import {BlurView} from 'react-native-blur';
@@ -12,79 +12,144 @@ import more from './assets/more.png';
 import reply from './assets/reply.png';
 import translate from './assets/translate.png';
 import copy from './assets/copy.png';
-
-
-
-
+import heart from './assets/heart.png';
+import like from './assets/like.png';
+import likeb from './assets/likeb.png';
 
 const ContentView = () => {
   const screenHeight = Dimensions.get('window').height;
   const screenWidth = Dimensions.get('window').width;
+  const [selectIcon, setSelectedIcon] = useState('');
 
   const [select, setSelected] = useState(0);
   const [blur, setBlur] = useState(0);
 
+  const ReactBar = () => {
+    return (
+      <View style={styles.ReactBar}>
+        <ReactIcon name="heart" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={like} />
+      </View>
+    );
+  };
+
+  const Reacted = props => {
+    return (
+      <View>
+        <TouchableOpacity
+          onPress={() => setSelectedIcon(props.name)}
+          style={[styles.rimgcon]}>
+          <Image source={props.imgb} style={styles.rimg} />
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const ReactIcon = props => {
+    return (
+      <View>
+        {selectIcon == props.name ? (
+          <TouchableOpacity
+            onPress={() => setSelectedIcon('')}
+            style={styles.ReactImgCon}>
+            <Image source={props.imgb} style={styles.ReactImg} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setSelectedIcon(props.name)}
+            style={[styles.ReactImgCon, {backgroundColor: '#3A3A3C'}]}>
+            <Image source={props.img} style={styles.ReactImg} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  };
+
   const RespondBox = () => {
     return (
       <BlurView blurType="dark" blurAmount={100} style={styles.RespondBox}>
-        <View >
-            <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 12,
-            }}>
-            <Text style={{color: '#fff', fontSize: 16,marginBottom:10}}>Reply</Text>
-            <Image style={styles.imgicon} source={reply}/>
-          </View>
-        </View>
-        <View style={{width:'100%',height:0.4,backgroundColor:'#5D5D5D'}}/>
-
-        </View>
         <View>
-            <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 12,
-            }}>
-            <Text style={{color: '#fff', fontSize: 16,marginBottom:10,marginTop:3}}>Copy</Text>
-            <Image style={styles.imgicon} source={copy}/>
-          </View>
-        </View>
-        <View style={{width:'100%',height:0.2,backgroundColor:'#5D5D5D'}}/>
-
-        </View>
-        <View>
-            <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 12,
-            }}>
-            <Text style={{color: '#fff', fontSize: 16,marginBottom:10,marginTop:3}}>Translate</Text>
-            <Image style={styles.imgicon} source={translate}/>
-          </View>
-        </View>
-        <View style={{width:'100%',height:0.4,backgroundColor:'#5D5D5D'}}/>
-
-        </View>
           <View>
-            <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 12,
-            }}>
-            <Text style={{color: '#fff', fontSize: 16}}>More</Text>
-            <Image style={styles.imgicon} source={more}/>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 12,
+              }}>
+              <Text style={{color: '#fff', fontSize: 16, marginBottom: 10}}>
+                Reply
+              </Text>
+              <Image style={styles.imgicon} source={reply} />
+            </View>
           </View>
+          <View
+            style={{width: '100%', height: 0.4, backgroundColor: '#5D5D5D'}}
+          />
         </View>
-
+        <View>
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 12,
+              }}>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 16,
+                  marginBottom: 10,
+                  marginTop: 3,
+                }}>
+                Copy
+              </Text>
+              <Image style={styles.imgicon} source={copy} />
+            </View>
+          </View>
+          <View
+            style={{width: '100%', height: 0.2, backgroundColor: '#5D5D5D'}}
+          />
+        </View>
+        <View>
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 12,
+              }}>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 16,
+                  marginBottom: 10,
+                  marginTop: 3,
+                }}>
+                Translate
+              </Text>
+              <Image style={styles.imgicon} source={translate} />
+            </View>
+          </View>
+          <View
+            style={{width: '100%', height: 0.4, backgroundColor: '#5D5D5D'}}
+          />
+        </View>
+        <View>
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 12,
+              }}>
+              <Text style={{color: '#fff', fontSize: 16}}>More</Text>
+              <Image style={styles.imgicon} source={more} />
+            </View>
+          </View>
         </View>
       </BlurView>
     );
@@ -96,37 +161,87 @@ const ContentView = () => {
         style={{
           paddingTop: blur == 0 ? 0 : 150,
         }}>
-        {blur == 2 ? (
+            {blur == 3 ? (
           <TouchableOpacity style={{zIndex: 999}}>
-            <SelectedMsg2 txt="mmmmm" id={2} />
-
-            <RespondBox />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => setBlur(2)}>
-            <SelectedMsg txt="mmmmm" id={2} />
-          </TouchableOpacity>
-        )}
-        {blur == 3 ? (
-          <TouchableOpacity style={{zIndex: 999}}>
-            <SelectedMsg2 txt="mmmmm" id={2} />
+            <SelectedMsg2 txt="Hello Dinith 😃" id={2} />
 
             <RespondBox />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => setBlur(3)}>
-            <RecMsg txt="hhhh" id={3} />
+            <RecMsg txt="Hello Dinith 😃" id={3} />
           </TouchableOpacity>
         )}
-        {blur == 4 ? (
+        
+        {blur == 2 ? (
           <TouchableOpacity style={{zIndex: 999}}>
-            <SelectedMsg2 txt="llll" id={4} />
+            {selectIcon == 'heart' ? (
+                                 <SelectedMsg2 txt="Hay Amashi !!" id={2} />
+                                 
 
-<RespondBox />
+            ) : (
+                <SelectedMsg2 txt="Hay Amashi !!" id={2} />
+
+            )}
+            <RespondBox />
+            <ReactBar />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={() => setBlur(4)}>
-            <SelectedMsg txt="llll" id={4} />
+          <TouchableOpacity onPress={() => setBlur(2)}>
+            <View style={styles.Reaction}>
+              <View style={{marginRight: -10}}>
+                {selectIcon == '' ? (
+                  <View></View>
+                ) : (
+                  <Reacted name="heart" imgb={likeb} img={like} />
+                )}
+              </View>
+              <SelectedMsg txt="Hay Amashi !!" id={2} />
+            </View>
+          </TouchableOpacity>
+        )}
+        {blur == 5 ? (
+          <TouchableOpacity style={{zIndex: 999}}>
+            <SelectedMsg2 txt="Hay Amashi !!" id={5} />
+
+            <RespondBox />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setBlur(5)}>
+            <RecMsg txt="Wtsupp" id={5} />
+          </TouchableOpacity>
+        )}
+        {blur == 9 ? (
+          <TouchableOpacity style={{zIndex: 999}}>
+            <SelectedMsg2 txt="Just Coding 😜" id={9} />
+
+            <RespondBox />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setBlur(9)}>
+            <SelectedMsg txt="Just Coding 😜" id={9} />
+          </TouchableOpacity>
+        )}
+        {blur == 3 ? (
+          <TouchableOpacity style={{zIndex: 999}}>
+            <SelectedMsg2 txt="Hay Amashi !!" id={2} />
+
+            <RespondBox />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setBlur(3)}>
+            <RecMsg txt="Cool" id={3} />
+          </TouchableOpacity>
+        )}
+        {blur == 88 ? (
+          <TouchableOpacity style={{zIndex: 999}}>
+            <SelectedMsg2 txt="🤙" id={88} />
+
+            <RespondBox />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setBlur(88)}>
+            <SelectedMsg txt="🤙" id={88} />
           </TouchableOpacity>
         )}
 
@@ -278,10 +393,52 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 15,
     paddingVertical: 10,
-    gap:5,
+    gap: 5,
   },
-  imgicon:{
+  imgicon: {
     width: 20,
-    height:20
-  }
+    height: 20,
+  },
+  ReactBar: {
+    position: 'absolute',
+    top: -60,
+    right: 0,
+    backgroundColor: '#3A3A3C',
+    margin: 10,
+    borderRadius: 50,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 7,
+    paddingVertical: 7,
+    gap: 5,
+  },
+  ReactImg: {
+    width: 20,
+    height: 20,
+  },
+  ReactImgCon: {
+    width: 35,
+    height: 35,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1488FE',
+  },
+  Reaction: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  rimg: {
+    width: 15,
+    height: 15,
+  },
+  rimgcon: {
+    width: 25,
+    height: 25,
+    backgroundColor: '#1488FE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+  },
 });

@@ -14,7 +14,6 @@ import wall from './wall.png';
 import ContentView from './View/ContentView';
 
 function App() {
-  const screenHeight = Dimensions.get('window').height;
   const backgroundStyle = {
     backgroundColor: '#000',
   };
