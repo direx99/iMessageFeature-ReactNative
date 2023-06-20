@@ -8,6 +8,7 @@ import {
   Animated,
   ScrollView,
   TextInput,
+  Linking,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {BlurView} from 'react-native-blur';
@@ -16,9 +17,33 @@ import reply from './assets/reply.png';
 import translate from './assets/translate.png';
 import copy from './assets/copy.png';
 import heart from './assets/heart.png';
+
+import qs from './assets/qs.png';
+import dislike from './assets/dislike.png';
+import haha from './assets/ha.png';
+import danger from './assets/danger.png';
+
+
 import like from './assets/like.png';
 import likeb from './assets/likeb.png';
 import git from './assets/git.png';
+import photo from './assets/photo.png';
+import voice from './assets/voice.png';
+import store from './assets/store.png';
+import icloud from './assets/icloud.png';
+import utube from './assets/utube.png';
+import record from './assets/record.png';
+import istore from './assets/istore.png';
+import music from './assets/music.png';
+import map from './assets/map.png';
+import tik from './assets/tik.png';
+import amashi from './assets/amashi.jpeg';
+import left from './assets/left.png';
+import video from './assets/video.png';
+
+
+
+
 
 
 const ContentView = () => {
@@ -28,7 +53,15 @@ const ContentView = () => {
 
   const [select, setSelected] = useState(0);
   const [blur, setBlur] = useState(0);
+
+
+  const handleLinkPress = () => {
+    Linking.openURL('https://github.com/direx99');
+  };
+
   const fadeAnim = useRef(new Animated.Value(0)).current;
+
+
 
   const FadeInView = (props) => {
   
@@ -69,9 +102,8 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
         <Image source={git} style={{width:120,height:120,alignSelf:'center'}}/>
         </View>
 
-        <Text style={{alignSelf:'flex-start',paddingLeft:10,color:'#fff',fontWeight:500,fontSize:18,paddingTop:5}}>direx99</Text>
-        <Text style={{alignSelf:'flex-start',paddingLeft:10,color:'#757575',fontWeight:400,fontSize:14}}>github.com</Text>
-        <Text style={{alignSelf:'flex-end',paddingLeft:10,color:'#757575',fontWeight:500,fontSize:1,marginTop:14,marginRight:5}}>Read</Text>
+        <Text style={{alignSelf:'flex-start',paddingLeft:10,color:'#fff',fontSize:18,paddingTop:5}}>direx99</Text>
+        <Text style={{alignSelf:'flex-start',paddingLeft:10,color:'#757575',fontSize:14}}>github.com</Text>
 
 
 
@@ -88,11 +120,11 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
     return (
       <FadeInView style={styles.ReactBar}>
         <ReactIcon name="heart" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={heart} />
+        <ReactIcon name="like" imgb={likeb} img={haha} />
+        <ReactIcon name="like" imgb={likeb} img={dislike} />
+        <ReactIcon name="like" imgb={likeb} img={qs} />
+        <ReactIcon name="like" imgb={likeb} img={danger} />
       </FadeInView>
     );
   };
@@ -101,11 +133,11 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
       <View style={styles.ReactBar2}>
         
         <ReactIcon name="heart" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
-        <ReactIcon name="like" imgb={likeb} img={like} />
+        <ReactIcon name="like" imgb={likeb} img={heart} />
+        <ReactIcon name="like" imgb={likeb} img={haha} />
+        <ReactIcon name="like" imgb={likeb} img={dislike} />
+        <ReactIcon name="like" imgb={likeb} img={qs} />
+        <ReactIcon name="like" imgb={likeb} img={danger} />
       </View>
     );
   };
@@ -562,7 +594,7 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
             <RespondBox />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={() => setBlur(88)}>
+          <TouchableOpacity onPress={handleLinkPress}>
            <Git/>
           </TouchableOpacity>
         )}
@@ -665,6 +697,17 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
           blurType="dark"
           blurAmount={100}
         >
+          <View style={{flexDirection:'row',marginTop:60,justifyContent:'space-between',paddingHorizontal:20,alignItems:'center'}}>
+          <Image source={left} style={{width:20,height:20}}/>
+
+            <View style={{gap:4,alignItems:'center'}}>
+          <Image source={amashi} style={{width:50,height:50,borderRadius:50}}/>
+          <Text style={{fontSize:12,color:'#fff'}}>Amashi</Text>
+          </View>
+          <Image source={video} style={{width:35,height:35}}/>
+
+          </View>
+
 
         </BlurView>
       )}
@@ -675,6 +718,7 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
       {blur !== 0 ? (
         <View></View>
       ) : (
+
         <BlurView
 
           style={{
@@ -688,10 +732,32 @@ backgroundColor:'#fff',justifyContent:'center',alignItems:'center',borderTopLeft
           blurType="dark"
           blurAmount={100}
         >
-          <View style={{width:'100%',height:38,backgroundColor:'#000',flexDirection:'row'}}>
-            <TextInput  placeholder='iMessage' style={{width:200,height:32,paddingHorizontal:15,borderColor:'#3B3B3D',borderWidth:1,borderRadius:20,}}></TextInput>
+
+          <View style={{width:'100%',height:48,backgroundColor:'#000',flexDirection:'row',gap:10,alignItems:'center',paddingHorizontal:10}}>
+            <Image source={photo} style={{width:30,height:30}}/>
+            <Image source={store} style={{width:35,height:26,borderRadius:20}}/>
+            <TextInput  placeholder='iMessage' style={{width:285,height:32,fontWeight:'500',paddingHorizontal:15,borderColor:'#3B3B3D',borderWidth:1.3,borderRadius:20,fontSize:18}}></TextInput>
+            <Image source={voice} style={{width:17,height:17,borderRadius:20,marginLeft:-35}}/>
+
           </View>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={{width:'100%',height:48,flexDirection:'row',gap:10,alignItems:'center',paddingHorizontal:10,marginTop:5}}>
+            <Image source={icloud} style={{width:50,height:60}}/>
+            <Image source={istore} style={{width:50,height:60}}/>
+            <Image source={music} style={{width:50,height:60}}/>
+            <Image source={record} style={{width:50,height:60}}/>
+            <Image source={utube} style={{width:50,height:60}}/>
+            <Image source={tik} style={{width:50,height:60}}/>
+            <Image source={map} style={{width:50,height:60}}/>
+
+
+
+          </View>
+          </ScrollView>
+
+
         </BlurView>
+        
       )}
     </View>
   );
